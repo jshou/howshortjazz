@@ -2,7 +2,7 @@
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>How Short Jazz</title>
-  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/vue/dist/vue.min.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
   <style>
@@ -95,7 +95,7 @@
   <template v-for="show in shows">
     <p>
       {{ show.date }}, {{ show.start }} - {{ show.end }}<br/>
-      <a href='#'>{{ show.venue }}</a>
+      <a v-bind:href="show.address">{{ show.venue }}</a>
     </p>
   </template>
 
@@ -155,9 +155,23 @@ var loadShows = function(bandName) {
       var event = data.items[i].summary.split('@').map(function(s) { return s.trim(); });
       var band = event[0];
       var venue = event[1];
-      var address = data.items[i].location;
 
-      var show = {'date': date, 'start': start, 'end': end, 'band': band, 'venue': venue};
+
+      var show = {
+        'date': date,
+        'start': start,
+        'end': end,
+        'band': band,
+        'venue': venue,
+      };
+
+      var address = data.items[i].location;
+      if (typeof(address) == 'undefined') {
+      } else {
+        var mapLink = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(data.items[i].location);
+        show.address = mapLink;
+      }
+
       if (band == bandName) {
         showCalendar.shows.push(show);
       }
