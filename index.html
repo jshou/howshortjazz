@@ -88,19 +88,15 @@
   <div class="fb-like" data-href="https://www.facebook.com/howshortjazz/" data-layout="standard" data-action="like" data-show-faces="false" data-share="true"></div>
 </div>
 
-<div class="section">
+<div class="section" id="shows">
   <h2>upcoming shows</h2>
-  <p>Thursday August 10th, 2017, 11am-2pm<br/>
-  <a href="http://www.olympiafarmersmarket.com/">Olympia Farmers Market</a><br/>
+  <template v-for="show in shows">
+    <p>
+      {{ show.datetime }}<br/>
+      <a href='#'>{{ show.location }}</a>
+    </p>
+  </template>
 
-  <p>Thursday September 28th, 2017, 8-11pm<br/>
-  <a href="https://thetinlizzielounge.com/">Tin Lizzie</a><br/>
-
-  <p>Sunday October 22nd, 2017, 6:30-8:30pm<br/>
-  <a href="http://capitolcider.com/">Capitol Cider</a><br/>
-
-  <p>Thursday October 26th, 2017, 8-11pm<br/>
-  <a href="https://thetinlizzielounge.com/">Tin Lizzie</a><br/>
 </div>
 
 <div class="section">
@@ -122,6 +118,19 @@
 ga('create', 'UA-30674736-5', 'auto');
 ga('send', 'pageview');
 
+</script>
+<script>
+  var shows = new Vue({
+    el: '#shows',
+    computed: {
+      shows: function() {
+        return [
+          {'datetime': 'Thursday October 26th, 2017, 8-11pm', 'location': 'Tin Lizzie'},
+          {'datetime': 'Friday October 27th, 2017, 8-11pm', 'location': 'Tin Lizzie'}
+        ];
+      }
+    }
+  });
 </script>
 </body>
 </html>
