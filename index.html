@@ -4,6 +4,7 @@
   <title>How Short Jazz</title>
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.1/moment.min.js"></script>
   <style>
     body {
       max-width: 500px;
@@ -93,8 +94,8 @@
   <h2>upcoming shows</h2>
   <template v-for="show in shows">
     <p>
-      {{ show.datetime }}<br/>
-      <a href='#'>{{ show.location }}</a>
+      {{ show.date }}, {{ show.start }} - {{ show.end }}<br/>
+      <a href='#'>{{ show.venue }}</a>
     </p>
   </template>
 
@@ -121,17 +122,52 @@ ga('send', 'pageview');
 
 </script>
 <script>
-  var shows = new Vue({
-    el: '#shows',
-    computed: {
-      shows: function() {
-        return [
-          {'datetime': 'Thursday October 26th, 2017, 8-11pm', 'location': 'Tin Lizzie'},
-          {'datetime': 'Friday October 27th, 2017, 8-11pm', 'location': 'Tin Lizzie'}
-        ];
+var showCalendar = new Vue({
+  el: '#shows',
+  data: {
+    shows: []
+  }
+});
+
+var loadShows = function(bandName) {
+
+  const mykey = 'AIzaSyCA9pV8ZJNnG2Gmerj71DF30noN8DTiQ9c';
+  const calendarid = 'nr5jftdjm9p0lg4pigi0dsld6c@group.calendar.google.com';
+
+  const yesterday = new Date(Date.now() - 864e5); // 864e5 == 86400000 == 24*60*60*1000
+
+  const options = {
+    key: mykey,
+    maxResults: 20,
+    orderBy: 'startTime',
+    singleEvents: true,
+    timeMin: yesterday.toISOString()
+  };
+
+  axios.get('https://www.googleapis.com/calendar/v3/calendars/' + calendarid + '/events', {
+    params: options
+  }).then(function(response) {
+    var data = response.data;
+    for (var i = 0; i < data.items.length; i++) {
+      var date =  moment(data.items[i].start.dateTime).format('dddd, MMM Do YYYY');
+      var start = moment(data.items[i].start.dateTime).format('h:mmA');
+      var end = moment(data.items[i].end.dateTime).format('h:mmA');
+      var event = data.items[i].summary.split('@').map(function(s) { return s.trim(); });
+      var band = event[0];
+      var venue = event[1];
+      var address = data.items[i].location;
+
+      var show = {'date': date, 'start': start, 'end': end, 'band': band, 'venue': venue};
+      if (band == bandName) {
+        showCalendar.shows.push(show);
       }
     }
-  });
+
+  }.bind(this));
+}
+
+loadShows("How Short");
+
 </script>
 </body>
 </html>
