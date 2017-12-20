@@ -1,0 +1,42 @@
+body {
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: "Courier New", Courier, monospace;
+  padding: 20px;
+  line-height: 1.5;
+  color: #222
+}
+
+a {
+  color: #3240F3;
+}
+
+h1 {
+  text-align: center;
+}
+
+.section {
+  margin: 50px 0 30px;
+}
+
+.about {
+  margin-bottom: 65px;
+}
+
+.header {
+  display: block;
+  margin: 30px auto;
+  width: 300px;
+}
+
+table {
+  margin: 30px auto;
+}
+
+td {
+  padding: 0 20px;
+}
+
+.recording {
+  padding-bottom: 20px;
+}
