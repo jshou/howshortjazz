@@ -5,6 +5,14 @@ import React from 'react';
 import Show from './show';
 
 class ShowsSection extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      shows: []
+    }
+  }
+
   componentWillMount() {
     this.loadShows('How Short');
   }
@@ -29,14 +37,15 @@ class ShowsSection extends React.Component {
   }
 
   address(locationString) {
-    if (typeof(address) != 'undefined') {
-      return `https://www.google.com/maps/search/?api=1&query=${ encodeURIComponent(data.items[i].location) }`;
+    const uriLocation = encodeURIComponent(locationString);
+    if (uriLocation != 'undefined') {
+      return `https://www.google.com/maps/search/?api=1&query=${ uriLocation }`;
     }
   }
 
   loadShows(bandname) {
     axios.get(this.calendarUrl(), {
-      params: options
+      params: this.showOptions()
     }).then(function(response) {
       var data = response.data;
       for (var i = 0; i < data.items.length; i++) {
@@ -47,10 +56,11 @@ class ShowsSection extends React.Component {
         var band = event[0];
         var venue = event[1];
 
-        if (band == bandName) {
+        if (band == bandname) {
           this.setState({
             shows: this.state.shows.concat([
               <Show
+                key={ i }
                 date={ date }
                 start={ start }
                 end={ end }
@@ -59,10 +69,9 @@ class ShowsSection extends React.Component {
                 address={ this.address(data.items[i].location) }/>
             ])
           });
-          showCalendar.shows.push(show);
         }
       }
-    });
+    }.bind(this));
   }
 
   render() {
