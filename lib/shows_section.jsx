@@ -2,7 +2,7 @@ import axios from 'axios';
 import moment from 'moment';
 import React from 'react';
 
-import Show from './show';
+import Show from './show.jsx';
 
 class ShowsSection extends React.Component {
   constructor(props) {
