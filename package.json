@@ -2,9 +2,11 @@
   "dependencies": {
     "axios": "^0.17.1",
     "babel-loader": "^7.1.4",
+    "gcal-events": "jshou/gcal-events",
     "moment": "^2.20.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "rxjs": "^6.3.3",
     "webpack": "^4.5.0",
     "webpack-cli": "^2.0.14",
     "webpack-dev-server": "^3.1.1",
