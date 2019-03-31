@@ -3,7 +3,6 @@
     "axios": "^0.17.1",
     "babel-loader": "^7.1.4",
     "gcal-events": "jshou/gcal-events",
-    "moment": "^2.20.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rxjs": "^6.3.3",
