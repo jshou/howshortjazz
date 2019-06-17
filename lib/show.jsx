@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment-timezone';
 
 const VenueLink = (props) => {
   if (props.address) {
@@ -16,17 +17,19 @@ const address = (locationString) => {
 }
 
 const Show = (props) => {
-  const date =  props.data.start.tz('America/Los_Angeles').format('dddd, MMM Do YYYY');
-  const start = props.data.start.tz('America/Los_Angeles').format('h:mmA');
-  const end = props.data.end.tz('America/Los_Angeles').format('h:mmA');
+  const date =  moment(props.data.start).tz('America/Los_Angeles').format('dddd, MMM Do YYYY');
+  const start = moment(props.data.start).tz('America/Los_Angeles').format('h:mmA');
+  const end = moment(props.data.end).tz('America/Los_Angeles').format('h:mmA');
   const [band, venue] = props.data.summary.split('@').map((s) => {
     return s.trim();
   });
+  const description = props.data.description;
 
   return (
     <p>
       { date }, { start } - { end }<br/>
       <VenueLink address={ address(props.data.location) } venue={ venue }/>
+      { description && <div dangerouslySetInnerHTML={{ __html: props.data.description }}></div> }
     </p>
   );
 }
