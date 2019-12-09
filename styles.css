@@ -11,6 +11,10 @@ a {
   color: #3240F3;
 }
 
+a.alert {
+  color: rgb(204, 59, 37);
+}
+
 h1 {
   text-align: center;
 }
