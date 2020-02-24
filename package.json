@@ -6,7 +6,7 @@
     "gcal-events": "jshou/gcal-events",
     "moment-timezone": "^0.5.28",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react-dom": "^16.12.0",
     "rxjs": "^6.3.3",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.6",
