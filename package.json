@@ -4,7 +4,7 @@
     "axios": "^0.18.1",
     "babel-loader": "^8.0.6",
     "gcal-events": "jshou/gcal-events",
-    "moment-timezone": "^0.5.25",
+    "moment-timezone": "^0.5.28",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "rxjs": "^6.3.3",
