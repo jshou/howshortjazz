@@ -2,7 +2,7 @@
   "dependencies": {
     "@babel/core": "^7.8.7",
     "axios": "^0.19.2",
-    "babel-loader": "^8.0.6",
+    "babel-loader": "^8.1.0",
     "gcal-events": "jshou/gcal-events",
     "moment-timezone": "^0.5.28",
     "react": "^16.13.0",
