@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@babel/core": "^7.9.6",
+    "@babel/core": "^7.10.2",
     "axios": "^0.19.2",
     "babel-loader": "^8.1.0",
     "gcal-events": "jshou/gcal-events",
