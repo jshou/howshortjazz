@@ -7,7 +7,7 @@
     "moment-timezone": "^0.5.31",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "rxjs": "^6.6.0",
+    "rxjs": "^6.6.2",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
