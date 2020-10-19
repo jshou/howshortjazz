@@ -5,7 +5,7 @@
     "babel-loader": "^8.1.0",
     "gcal-events": "jshou/gcal-events",
     "moment-timezone": "^0.5.31",
-    "react": "^16.13.1",
+    "react": "^16.14.0",
     "react-dom": "^16.13.1",
     "rxjs": "^6.6.2",
     "webpack": "^4.44.1",
